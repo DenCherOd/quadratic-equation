@@ -1,14 +1,13 @@
 package quadratic_equation;
 
+import java.util.Objects;
+
 public class Solution {
     private double x1;
     private double x2;
 
-    public void setX1(double x1) {
+    public Solution(double x1, double x2) {
         this.x1 = x1;
-    }
-
-    public void setX2(double x2) {
         this.x2 = x2;
     }
 
@@ -22,5 +21,21 @@ public class Solution {
 
     public String toString() {
         return x1 + " " + x2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Solution solution = (Solution) o;
+        return Double.compare(solution.x1, x1) == 0 ||
+                Double.compare(solution.x1, x2) == 0
+                        && Double.compare(solution.x2, x2) == 0 ||
+                Double.compare(solution.x2, x1) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x1, x2);
     }
 }
